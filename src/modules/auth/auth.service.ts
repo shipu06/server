@@ -12,10 +12,11 @@ export class AuthService {
         if(user) {
             const isMatched = await compareHash(user?.password, payload?.password);
             if (isMatched) {
-                const data = { id: user?.id, name: user?.name, username: user?.username };
+                const roles = user?.roles.map((ele) => ele?.role);
+                const data = { id: user?.id, name: user?.name, username: user?.username, roles };
                 const access_token = this.jwtService.sign(data); 
                 delete user?.password;
-                return { access_token, user};
+                return { access_token, user:  { ...user, roles}};
             }
             return 'Invalid password'
         }

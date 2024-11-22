@@ -8,8 +8,8 @@ export class RoleRepository extends Repository<Role> {
         super(Role, dataSource.createEntityManager());
       }
     
-      async findAllRoles(){
-        return await this.find();
+      async fetchOne(where){
+        return this.findOne({where});
       }
 
       async createRoles(roles){

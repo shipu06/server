@@ -16,6 +16,6 @@ export class UserRepository extends Repository<User> {
     }
 
     async signInUser(payload) {
-        return this.findOne({ where: [{ username: payload },  {email: payload}, {phoneNumber: payload}]})
+        return this.findOne({ where: [{ username: payload },  {email: payload}, {phoneNumber: payload}], relations: ['roles']})
     }
 }

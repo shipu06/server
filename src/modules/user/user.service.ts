@@ -1,16 +1,22 @@
 import { Injectable } from "@nestjs/common";
 import { UserRepository } from "./../../db/repositories/user.repository";
 import { plainToHash } from "../common/bcrypt.service";
+import { RoleService } from "../role/role.service";
 
 @Injectable()
 export class UserService {
     constructor(
-        private readonly userRepo: UserRepository
+        private readonly userRepo: UserRepository,
+        private readonly roleService: RoleService
     ) {}
 
     async createUser(user){
+        let userRoles = null;
         const hashedPassword = await plainToHash(user?.password);
-        return this.userRepo.createUser({...user, password: hashedPassword});
+        if(user && (user.roles || !user.roles?.length)){
+            userRoles = await this.roleService.fetchOne({ role: 'member' });
+        }
+        return this.userRepo.createUser({...user, roles: [userRoles], password: hashedPassword});
     }
 
     findOneUser(where){

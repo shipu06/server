@@ -16,9 +16,7 @@ import {
       if (!user) {
         throw new ForbiddenException('User not found in request');
       }
-  
-      // Check if user has at least one of the required roles
-      const hasRole = this.requiredRoles.some((role) => user.roles?.includes(role));
+        const hasRole = this.requiredRoles.some((role) => user.roles?.includes(role));
       if (!hasRole) {
         throw new ForbiddenException('You do not have permission to access this resource');
       }

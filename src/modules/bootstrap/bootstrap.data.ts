@@ -8,4 +8,4 @@ export const AdminUser = {
     roles: ['admin']
 }
 
-export const Roles = ['admin', 'doner', 'volunteer', 'member'];
+export const Roles = [{role:'admin'}, {role: 'doner'}, {role:'volunteer'}, {role:'member'}];
