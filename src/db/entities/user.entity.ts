@@ -1,6 +1,8 @@
-import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, OneToOne } from "typeorm";
 import { BaseEntity } from "../entities/abstract/base.entity";
 import { Role } from "./role.entity";
+import { Campaign } from "./campaign.entity";
+import { Donation } from "./donations.entity";
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
@@ -25,4 +27,10 @@ export class User extends BaseEntity {
     @ManyToMany(() => Role, { cascade: true })
     @JoinTable()
     roles: Role[];
+
+    @OneToMany(() => Campaign, (campaign) => campaign.user, { cascade: true })
+    campaign: Campaign[];
+
+    @OneToMany(() => Donation, (donation) => donation.receivedBy, { cascade: true })
+    donationsReceived: Donation[];
 }
