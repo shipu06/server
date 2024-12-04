@@ -28,7 +28,7 @@ export class User extends BaseEntity {
     @JoinTable()
     roles: Role[];
 
-    @OneToMany(() => Campaign, (campaign) => campaign.user, { cascade: true })
+    @OneToMany(() => Campaign, (campaign) => campaign.managedBy, { cascade: true })
     campaign: Campaign[];
 
     @OneToMany(() => Donation, (donation) => donation.receivedBy, { cascade: true })
