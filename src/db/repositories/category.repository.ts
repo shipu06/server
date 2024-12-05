@@ -9,7 +9,19 @@ export class CategoryRepository extends Repository<Category> {
         super(Category, dataSource.createEntityManager());
     }
 
+    async fetchCategory(where){
+        return await this.findOne({where});
+    }
+
+    async fetchCategoryList(){
+        return await this.find();
+    }
+
     async createCategory(payload){
         return await this.save(this.create(payload));
+    }
+
+    async updateCategory(payload){
+        return await this.save(payload);
     }
 }
