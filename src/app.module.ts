@@ -7,6 +7,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { RoleModule } from './modules/role/role.module';
 import { CampaignModule } from './modules/campaign/campaign.module';
 import { CategoryModule } from './modules/category/category.module';
+import { DonationModule } from './modules/donation/donation.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { CategoryModule } from './modules/category/category.module';
       entities: [path.resolve(__dirname, './db/entities/*.entity.{ts,js}')],
       synchronize: true,
     }),
-    UserModule, AuthModule, RoleModule, CampaignModule, CategoryModule
+    UserModule, AuthModule, RoleModule, CampaignModule, CategoryModule, DonationModule
   ],
   controllers: [],
   providers: [BootstrapService],

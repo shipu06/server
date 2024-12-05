@@ -33,4 +33,7 @@ export class User extends BaseEntity {
 
     @OneToMany(() => Donation, (donation) => donation.receivedBy, { cascade: true })
     donationsReceived: Donation[];
+
+    @OneToMany(() => Donation, (donation) => donation.user)
+    donations: Donation[];
 }
